@@ -1,0 +1,25 @@
+{
+  "name": "gt-mysql-employee-tracker-homework12",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "watch": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pakmk/gt-mysql-employee-tracker-homework12.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pakmk/gt-mysql-employee-tracker-homework12/issues"
+  },
+  "homepage": "https://github.com/pakmk/gt-mysql-employee-tracker-homework12#readme",
+  "dependencies": {
+    "inquirer": "^7.3.0",
+    "mysql": "^2.18.1"
+  }
+}
