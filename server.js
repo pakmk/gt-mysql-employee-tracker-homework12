@@ -6,7 +6,7 @@ const connection = mysql.createConnection({
   host: "localhost",
   port: 3306,
   user: "root",
-  password: "",
+  password: "!Kuran0113",
   database: "employee_tracker",
 });
 
@@ -23,31 +23,31 @@ const questions = [
     choices: [
       {
         name: "View all Employees",
-        value: "viewEmployees"
+        value: "viewEmployees",
       },
       {
         name: "View all Employees By Department",
-        value: "viewAll"
+        value: "viewAll",
       },
       {
         name: "View all Employees By Manager",
-        value: "viewManager"
+        value: "viewManager",
       },
       {
         name: "Add Employee",
-        value: "addEmployee"
+        value: "addEmployee",
       },
       {
         name: "Remove Employee",
-        value: "removeEmployee"
+        value: "removeEmployee",
       },
       {
         name: "Update Employee Role",
-        value: "updateEmployee"
+        value: "updateEmployee",
       },
       {
         name: "Update Employee Manager",
-        value: "updateEmployeeManager"
+        value: "updateEmployeeManager",
       },
     ],
   },
@@ -55,13 +55,50 @@ const questions = [
 
 function init() {
   inquirer.prompt(questions).then((response) => {
+    if (response.view === "viewEmployees") {
+      allEmployees();
+    } else if (response.view === "viewAll") {
+      allEmployeesByDepartment(); 
+    } else if (response.view === "viewManager"){
+      allEmployeesByManager();
+    }
+   
+
   });
 }
 function allEmployees() {
-  connection.query("", (err, res) => {
-    if (err) throw err;
-    init();
-});
+  connection.query(
+    "SELECT employee.id, employee.first_name, employee.last_name, role.title, role.salary FROM employee LEFT JOIN role ON employee.role_id = role.id",
+    (err, res) => {
+      if (err) throw err;
+      console.table(res);
+      init();
+    }
+  );
 }
-init();
 
+function allEmployeesByDepartment() {
+  connection.query(
+    "SELECT employee.id, employee.first_name, employee.last_name, role.title, role.salary FROM employee LEFT JOIN role ON employee.role_id = role.id",
+    (err, res) => {
+      if (err) throw err;
+      console.table(res);
+      init();
+    }
+  );
+}
+
+function allEmployeesByManager() {
+  connection.query(
+    "SELECT employee.id, employee.first_name, employee.last_name, role.title, role.salary FROM employee LEFT JOIN role ON employee.role_id = role.id",
+    (err, res) => {
+      if (err) throw err;
+      console.table(res);
+      init();
+    }
+  );
+}
+
+
+
+init();
