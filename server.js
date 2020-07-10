@@ -57,6 +57,11 @@ function init() {
   inquirer.prompt(questions).then((response) => {
   });
 }
-
+function allEmployees() {
+  connection.query("", (err, res) => {
+    if (err) throw err;
+    init();
+});
+}
 init();
 
