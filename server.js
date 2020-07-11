@@ -62,6 +62,14 @@ const questions = [
         value: "viewEmpl",
       },
       {
+        name: "Add Department",
+        value: "addDept",
+      },
+      {
+        name: "Add Role",
+        value: "addRole",
+      },
+      {
         name: "Exit",
         value: "exit",
       },
@@ -93,6 +101,32 @@ const addEmpl = [
   },
 ];
 
+const addDept = [
+  {
+    type: "input",
+    message: "What is the department you would like to add?",
+    name: "name",
+  },
+];
+
+const addRole = [
+  {
+    type: "input",
+    message: "What is the title you would like to add?",
+    name: "title",
+  },
+  {
+    type: "input",
+    message: "What is the salary you would like to add?",
+    name: "salary",
+  },
+  {
+    type: "input",
+    message: "What is the department you would like to add?",
+    name: "department_id",
+  },
+];
+
 function init() {
   inquirer.prompt(questions).then((response) => {
     if (response.view === "viewEmployees") {
@@ -109,8 +143,11 @@ function init() {
       viewRole();
     } else if (response.view === "viewEmpl") {
       viewEmpl();
-    } else (response.view === "exit") 
-      exit();
+    } else if (response.view === "addDept") {
+      addDepartment();
+    }  else if (response.view === "addRole") {
+      addRoles();
+    } 
   });
 }
 function allEmployees() {
@@ -186,6 +223,26 @@ function viewEmpl() {
       init();
     }
   );
+}
+
+function addDepartment() {
+  inquirer.prompt(addDept).then((response) => {
+    // console.log(response);
+    connection.query(`INSERT INTO department SET ?`, response, (err) => {
+      if (err) throw err
+      init();
+    });
+  });
+}
+
+function addRoles() {
+  inquirer.prompt(addRole).then((response) => {
+    // console.log(response);
+    connection.query(`INSERT INTO role SET ?`, response, (err) => {
+      if (err) throw err
+      init();
+    });
+  });
 }
 
 function exit() {
