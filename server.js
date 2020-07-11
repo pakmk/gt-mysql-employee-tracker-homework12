@@ -89,10 +89,9 @@ const addEmpl = [
     name: "last_name",
   },
   {
-    type: "list",
+    type: "input",
     message: "What is the employee's role?",
     name: "role_id",
-    choices: ["Engineering", "Finance", "Sales", "Legal"],
   },
   {
     type: "input",
@@ -147,7 +146,9 @@ function init() {
       addDepartment();
     }  else if (response.view === "addRole") {
       addRoles();
-    } 
+    } else if (response.view === "exit") {
+      exit();
+    }
   });
 }
 function allEmployees() {
